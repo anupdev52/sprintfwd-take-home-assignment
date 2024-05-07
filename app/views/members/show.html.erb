@@ -1,0 +1,10 @@
+<h1><%= @member.first_name %> <%= @member.last_name %></h1>
+
+<p>
+  Team: <%= @member.team.name if @member.team %>
+</p>
+
+<p>
+  <%= link_to 'Edit', edit_member_path(@member) %> |
+  <%= link_to 'Back', members_path %>
+</p>

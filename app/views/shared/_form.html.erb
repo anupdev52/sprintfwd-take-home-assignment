@@ -1,0 +1,54 @@
+<%= form_with(model: project || member || team, local: true) do |form| %>
+  <% if project || member || team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize((project || member || team).errors.count, "error") %> prohibited this record from being saved:</h2>
+
+      <ul>
+        <% (project || member || team).errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <% if member %>
+    <div class="field">
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :last_name %>
+      <%= form.text_field :last_name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :city %>
+      <%= form.text_field :city %>
+    </div>
+
+    <div class="field">
+      <%= form.label :state %>
+      <%= form.text_field :state %>
+    </div>
+
+    <div class="field">
+      <%= form.label :country %>
+      <%= form.text_field :country %>
+    </div>
+
+    <div class="field">
+      <%= form.label :team_id, 'Team' %>
+      <%= form.collection_select :team_id, Team.all, :id, :name, include_blank: true %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
